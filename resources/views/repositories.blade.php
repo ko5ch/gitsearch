@@ -7,8 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-x-auto shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="bg-gray-50 overflow-x-auto shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-gray-50 border-b border-gray-200">
                     <x-search :url="route('repositories.search')"></x-search>
                     <x-partials.repositories.items_table :items="$repositories"></x-partials.repositories.items_table>
 

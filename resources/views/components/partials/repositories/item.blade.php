@@ -1,6 +1,6 @@
 @props(['item'])
 
-<tr class="bg-white font-medium text-sm divide-y divide-gray-300">
+<tr class="bg-gray-50 font-medium text-sm divide-y divide-gray-300">
     <td  class="p-2 whitespace-normal md:break-all">
         {{ $item->get('name') }}
     </td>
