@@ -18,7 +18,7 @@ class CreateRepositoryFavoritesTable extends Migration
             $table->string('name');
             $table->string('html_url')->unique();
             $table->text('description')->nullable();
-            $table->string('owner_login', 39)->unique();
+            $table->string('owner_login', 39);
             $table->unsignedInteger('stargazers_count')->default(0);
             $table->unsignedBigInteger('repo_id')->unique();
             $table->timestamps();
