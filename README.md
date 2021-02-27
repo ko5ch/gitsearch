@@ -28,7 +28,7 @@ cp .env.example .env
 php artisan key:generate
 ````
 
-7. Migrate with '--f' flag for Node modules installation and building frontend, and '--b' flag for Laravel Breeze installation:
+7. Run migrate command with '--f' flag for Node modules installation and building frontend, and '--b' flag for Laravel Breeze installation:
 ````
 php artisan boss --f --b
 ````
