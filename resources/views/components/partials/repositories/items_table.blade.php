@@ -15,7 +15,7 @@
                                     array_merge(request()->query(), [
                                         'order' => request()->get('order') === 'desc' ? 'asc' : 'desc',
                                         'sort'  => 'stars'
-                                        ])
+                                    ])
                                 ) }}">
                         {{ \Str::of($titleName)->replace('_', ' ')->title()->__toString() }}
                         {!! !request()->get('order') ? "&#x21D5;" : (request()->get('order') === 'desc' ? "&#x21d3;" : "&#x21d1;") !!}

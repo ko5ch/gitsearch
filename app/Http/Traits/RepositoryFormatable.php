@@ -23,11 +23,13 @@ trait RepositoryFormatable
                 return collect($collection)
                     ->merge([
                         'is_exist'      => $repository->isExists($model, 'repo_id', $collection['id']),
+                        'owner_url'     => $collection['owner']['html_url'],
                         'owner_login'   => $collection['owner']['login'],
                         'repo_id'       => $collection['id'],
                     ])
                     ->only([
-                        'repo_id', 'name', 'html_url', 'description', 'owner_login', 'stargazers_count', 'is_exist'
+                        'repo_id', 'name', 'html_url', 'description', 'owner_login', 'stargazers_count',
+                        'is_exist', 'owner_url'
                     ]);
             });
         }

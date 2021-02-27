@@ -11,7 +11,9 @@
         {{ $item->get('description') }}
     </td>
     <td class="p-2 whitespace-nowrap">
-	    <span class="bg-indigo-100 text-indigo-600 text-xs font-semibold rounded-2xl py-1 px-4">{{ $item->get('owner_login') }}</span>
+	    <span class="bg-indigo-100 text-indigo-600 text-xs font-semibold rounded-2xl py-1 px-4">
+            <a href="{{ $item->get('owner_url') }}" target="_blank">{{ $item->get('owner_login') }}</a>
+        </span>
 	</td>
     <td  class="p-2 whitespace-normal">
         {{ $item->get('stargazers_count') }}
