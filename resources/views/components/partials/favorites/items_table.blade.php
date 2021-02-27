@@ -1,7 +1,7 @@
 @props(['items'])
 
-<table class="overflow-x-auto w-full bg-white mt-5 table-auto">
-    <thead class="bg-blue-100 border-b border-gray-300">
+<table class="overflow-x-auto w-full bg-yellow-50 mt-5 table-auto">
+    <thead class="bg-green-100 border-b">
         <tr>
             @foreach(['name', 'html_url', 'description', 'owner_login', 'stargazers_count', ''] as $titleName)
                 <th class="p-4 text-left text-sm font-medium text-gray-500 whitespace-nowrap">

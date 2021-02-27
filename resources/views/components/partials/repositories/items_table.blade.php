@@ -1,7 +1,7 @@
 @props(['items'])
 
 <table class="overflow-x-auto w-full bg-white mt-5">
-    <thead class="bg-blue-100 border-b border-gray-300">
+    <thead class="bg-green-100 border-b border-gray-300">
     <tr>
         @foreach(['name', 'html_url', 'description', 'owner_login', 'stargazers_count', ''] as $titleName)
             @if($loop->iteration !== $loop->count - 1)
