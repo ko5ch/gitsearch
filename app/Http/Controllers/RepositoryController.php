@@ -43,22 +43,19 @@ class RepositoryController extends Controller
         ]);
     }
 
-    public function favorites(Request $request)
+    public function publicFavorites(Request $request)
     {
-        return view('favorites', [
+        return view('public_favorites', [
             'repositories' => $this->paginate(
                 $this->repository->all($this->model),RepositoryFavorite::DEFAULT_PAGINATION,
-                $request->get('page'), route('repositories.favorites')
+                $request->get('page'), route('repositories.public_favorites')
             )
         ]);
     }
 
     public function store(RepositoryFavoriteRequest $request)
     {
-        $favorite = $this->repository->getOrCreate(
-            $this->model, collect($request->validated()),
-            collect(RepositoryFavorite::STORE_UNIQUE_FIELD)
-        );
+        $favorite = $this->repository->create($this->model, collect($request->validated()));
 
         return redirect()->back();
     }

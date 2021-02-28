@@ -11,7 +11,7 @@
         {{ $item->get('description') }}
     </td>
     <td class="p-2 whitespace-nowrap">
-	    <span class="bg-green-600 text-green-50 text-xs font-semibold rounded-2xl py-1 px-4 hover:bg-green-200 hover:text-gray-600">
+	    <span class="bg-green-500 text-green-50 text-xs font-semibold rounded-2xl py-1 px-4 hover:bg-green-200 hover:text-gray-600">
             <a href="{{ $item->get('owner_url') }}" target="_blank">{{ $item->get('owner_login') }}</a>
         </span>
 	</td>
@@ -20,7 +20,7 @@
     </td>
     <td class="p-4 whitespace-normal">
         <div class="flex space-x-1">
-            @if(!$item->get('is_exist'))
+            @if(!$item->get('user_has_repo'))
                 <x-add-button :url="route('repositories.store')" :title="'Add to Favorites'">
                     @foreach(['name', 'html_url', 'description', 'stargazers_count', 'repo_id', 'owner_login'] as $field)
                         <x-input type="hidden" name="{{ $field }}" :value="$item->get($field)" id="{{ $field }}"></x-input>

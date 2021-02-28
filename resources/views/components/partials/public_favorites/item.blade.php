@@ -20,7 +20,13 @@
     </td>
     <td class="p-4 whitespace">
         <div class="flex space-x-1">
-            <x-remove-button :url="route('repositories.delete', $item->repo_id)" :title="'Remove to Favorites'"></x-remove-button>
+            @can('isOwn', $item)
+                <x-remove-button :url="route('repositories.delete', $item->repo_id)" :title="'Remove to Favorites'"></x-remove-button>
+            @else
+                <x-add-button :url="route('users.repositories.add', \Auth::user())" :title="'Add to Favorites'">
+                    <x-input type="hidden" name="repository_favorite_id" :value="$item->id" id="repository_favorite_id"></x-input>
+                </x-add-button>
+            @endcan
         </div>
     </td>
 </tr>

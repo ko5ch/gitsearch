@@ -21,7 +21,17 @@ class CreateRepositoryFavoritesTable extends Migration
             $table->string('owner_login', 39);
             $table->unsignedInteger('stargazers_count')->default(0);
             $table->unsignedBigInteger('repo_id')->unique();
-            $table->timestamps();
+        });
+
+        Schema::create('repository_favorite_user', function (Blueprint $table) {
+            $table->foreignId('repository_favorite_id')
+                ->references('id')->on('repository_favorites')
+                ->onDelete('cascade');
+            $table->foreignId('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
+            $table->unique(['repository_favorite_id', 'user_id']);
         });
     }
 
@@ -32,6 +42,7 @@ class CreateRepositoryFavoritesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('repository_favorite_user');
         Schema::dropIfExists('repository_favorites');
     }
 }

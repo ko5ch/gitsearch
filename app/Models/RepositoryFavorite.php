@@ -24,6 +24,8 @@ class RepositoryFavorite extends Model
     const STORE_UNIQUE_FIELD = ['repo_id'];
     const DEFAULT_PAGINATION = 5;
 
+    public $timestamps  = false;
+
     protected $fillable = ['name', 'html_url', 'description', 'owner_login', 'stargazers_count', 'repo_id'];
 
     public function getOwnerLoginLinkAttribute()
@@ -34,5 +36,10 @@ class RepositoryFavorite extends Model
     public function getHtmlUrlLinkAttribute()
     {
         return \Str::start($this->html_url, GitService::GIT_URL);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

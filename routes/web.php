@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\RepositoryFavoriteUserController;
 use App\Http\Controllers\RepositoryController;
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,12 @@ Route::group([ 'middleware' => ['web', 'auth']], function () {
         Route::get('', [RepositoryController::class, 'index'])->name('search');
         Route::post('', [RepositoryController::class, 'store'])->name('store');
     });
-    Route::get('favorites', [RepositoryController::class, 'favorites'])->name('repositories.favorites');
+    Route::get('public-favorites', [RepositoryController::class, 'publicFavorites'])->name('repositories.public_favorites');
+});
+Route::group(['middleware' => ['auth:web'], 'prefix' => 'users', 'as' => 'users.'], function() {
+    Route::get('{user}/repository-favorites', [RepositoryFavoriteUserController::class, 'favorites'])
+        ->name('repositories.favorites');
+    Route::post('{user}/repository-favorites', [RepositoryFavoriteUserController::class, 'addToFavorites'])
+        ->name('repositories.add');
 });
 require __DIR__.'/auth.php';

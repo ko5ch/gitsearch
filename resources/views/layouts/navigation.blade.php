@@ -12,12 +12,17 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('repositories.favorites')" :active="request()->routeIs('repositories.favorites')">
-                        {{ __('Favorites') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('repositories.search')" :active="request()->routeIs('repositories.search')">
-                        {{ __('Search Repositories') }}
-                    </x-nav-link>
+                    @auth()
+                        <x-nav-link :href="route('users.repositories.favorites', \Auth::user())" :active="request()->routeIs('repositories.favorites')">
+                            {{ __('Favorites') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('repositories.public_favorites')" :active="request()->routeIs('repositories.public_favorites')">
+                            {{ __('Public Favorites') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('repositories.search')" :active="request()->routeIs('repositories.search')">
+                            {{ __('Search Repositories') }}
+                        </x-nav-link>
+                    @endauth
                 </div>
             </div>
 
@@ -25,7 +30,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="flex items-center text-sm font-medium text-green-100 hover:text-green-200 hover:border-green-300 focus:outline-none focus:text-indigo-100 focus:border-indigo-200 transition duration-150 ease-in-out">
+                        <button class="flex items-center text-sm font-medium text-green-100 hover:text-green-200 hover:border-green-300 focus:outline-none focus:text-blue-100 focus:border-blue-200 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
@@ -66,12 +71,17 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('repositories.search')" :active="request()->routeIs('repositories.search')">
-                {{ __('Search Repositories') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('repositories.favorites')" :active="request()->routeIs('repositories.favorites')">
-                {{ __('Favorites') }}
-            </x-responsive-nav-link>
+            @auth()
+                <x-responsive-nav-link :href="route('repositories.search')" :active="request()->routeIs('repositories.search')">
+                    {{ __('Search Repositories') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('users.repositories.favorites', \Auth::user())" :active="request()->routeIs('repositories.favorites')">
+                    {{ __('Favorites') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('repositories.public_favorites')" :active="request()->routeIs('repositories.public_favorites')">
+                    {{ __('Public Favorites') }}
+                </x-responsive-nav-link>
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
